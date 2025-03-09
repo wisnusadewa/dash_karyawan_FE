@@ -1,14 +1,27 @@
-import CarouselComp from './CarouselComp';
-import CardInfoDash from './CardInfoDash';
 import { Label } from '@/components/ui/label';
-import { PieChartData } from './PieChartData';
+import useAuth from '@/features/auth/hooks/useAuth';
+import CardInfoDash from './CardInfoDash';
+import CarouselComp from './CarouselComp';
 import { LineChartData } from './LineChartData';
+import { PieChartData } from './PieChartData';
 
 const ContainerDash = () => {
+  const { getAllUser } = useAuth();
+  const { data: users, isLoading, error } = getAllUser();
+  console.log('get all users container dash', users);
+
+  console.log('users??', users);
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error loading users</p>;
+
   return (
     <div className="flex flex-col h-full w-full p-5 shadow-neumorph rounded-[15px] gap-2 lg:gap-10 overflow-hidden">
-      <div className="flex flex-col gap-3">
-        <Label>List Job</Label>
+      <div className="flex flex-col gap-5">
+        <div className="flex gap-2 items-center">
+          <Label>List Job </Label>
+          <Label className="text-[12px] text-slate-400">{`slide >>`}</Label>
+        </div>
         <CarouselComp />
       </div>
 

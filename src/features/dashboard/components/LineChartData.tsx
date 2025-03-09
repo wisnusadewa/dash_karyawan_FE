@@ -40,7 +40,7 @@ const chartConfig = {
 
 export function LineChartData() {
   return (
-    <Card>
+    <Card className="flex flex-col h-full">
       <CardHeader>
         <CardTitle>Line Chart - Custom Label</CardTitle>
         <CardDescription>January - June 2024</CardDescription>

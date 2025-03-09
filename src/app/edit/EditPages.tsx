@@ -1,14 +1,14 @@
+import EditComp from '@/features/edit/components/EditComp';
 import SideBar from '@/features/Sidebar/components/SideBar';
-import EmployeeDash from '@/features/employees/components/EmployeeDash';
 import LayoutDash from '@/layout/LayoutDash';
 
-const EmployeesPage = () => {
+const EditPages = () => {
   return (
     <LayoutDash>
       <SideBar />
-      <EmployeeDash />
+      <EditComp />
     </LayoutDash>
   );
 };
 
-export default EmployeesPage;
+export default EditPages;
