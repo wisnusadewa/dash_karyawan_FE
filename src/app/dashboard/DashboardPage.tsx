@@ -6,17 +6,24 @@ import LayoutDash from '../../layout/LayoutDash';
 
 const DashboardPage = () => {
   const accessToken = localStorage.getItem('accessToken');
-  const user = localStorage.getItem('user');
+  const userString = localStorage.getItem('user');
   const navigate = useNavigate();
+
+  // Parse user dari localStorage jika ada, jika tidak, gunakan null
+  const user = userString ? JSON.parse(userString) : null;
 
   // jika user belum login dan menuju dashboard maka diarahkan ke login page
   useEffect(() => {
-    if (!accessToken) navigate('/login');
-  }, []);
+    if (!accessToken) {
+      navigate('/login');
+    } else if (user?.role === 'USER') {
+      navigate('/profile');
+    }
+  }, [user, accessToken, navigate]);
 
   // console.log('accessToken dashboard? :', accessToken);
 
-  console.log('user di dashboard page:', user);
+  console.log('user di dashboard page:', user?.role);
 
   return (
     <>

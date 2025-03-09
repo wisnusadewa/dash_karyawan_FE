@@ -1,9 +1,10 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
-export interface User {
+interface User {
   email: string;
   password: string;
+  role: string;
 }
 
 export interface AuthState {
@@ -13,7 +14,7 @@ export interface AuthState {
 
 const userString = localStorage.getItem('user');
 const initialState: AuthState = {
-  user: userString ? JSON.parse(localStorage.getItem('user')!) : null,
+  user: userString ? (JSON.parse(userString) as User) : null,
   accessToken: localStorage.getItem('accessToken') || null,
 };
 
@@ -32,6 +33,7 @@ export const authSlice = createSlice({
     },
     logoutUserRedux: (state) => {
       state.accessToken = null;
+      state.user = null;
       localStorage.removeItem('accessToken');
       localStorage.removeItem('user');
     },

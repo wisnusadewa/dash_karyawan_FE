@@ -12,7 +12,7 @@ const profilePage = () => {
 
   useEffect(() => {
     if (!accessToken) navigate('/login');
-  }, [accessToken]);
+  }, [accessToken, navigate]);
 
   return (
     <>
